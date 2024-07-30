@@ -2,7 +2,7 @@
 
 This repo contains the starter code for the "Notely" application for the "Learn CICD" course on [Boot.dev](https://boot.dev).
 
-Current Progress: 1:4
+Current Progress: 1:5
 
 ## Local Development
 
