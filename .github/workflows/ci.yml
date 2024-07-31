@@ -33,7 +33,7 @@ jobs:
         run: echo 'export PATH=$PATH:$GOPATH/bin' >> ~/.bashrc
 
       - name: check GOPATH
-        run: ls ~/.local/bin/bin
+        run: ls ~/.local
 
       - name: Update terminal state
         run: source ~/.bashrc
