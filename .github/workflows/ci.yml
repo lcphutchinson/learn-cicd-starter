@@ -26,20 +26,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Install staticcheck
-        run: go install honnef.co/go/tools/cmd/staticcheck@latest
-
-      - name: Add staticcheck to PATH
-        run: echo 'export PATH=$PATH:$GOPATH/bin' >> ~/.bashrc
-
-      - name: check GOPATH
-        run: ls ~/.local
-
-      - name: Update terminal state
-        run: source ~/.bashrc
-
       - name: Formatting Verification
         run: test -z $(go fmt ./...)
 
-      - name: Run Staticcheck
-        run: staticcheck ./...
+      - name: Run StaticCheck
+      - uses: dominikh/staticcheck-action@v1
+        with:
+          version: "latest"
