@@ -32,6 +32,9 @@ jobs:
       - name: Add staticcheck to PATH
         run: echo 'export PATH=$PATH:$GOPATH/bin' >> ~/.bashrc
 
+      - name: check GOPATH
+        run: echo $GOPATH
+
       - name: Update terminal state
         run: source ~/.bashrc
 
