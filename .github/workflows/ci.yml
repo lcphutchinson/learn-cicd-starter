@@ -20,3 +20,6 @@ jobs:
 
       - name: Check Running Version
         run: go test -cover ./...
+
+      - name: Formatting Verification
+        run: test -z $(go fmt ./...)

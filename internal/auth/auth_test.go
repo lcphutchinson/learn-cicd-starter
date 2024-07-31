@@ -9,48 +9,46 @@ import (
 
 var ErrMalformedHeader = errors.New("malformed authorization header")
 
-func TestGetAPIKey(t *testing.T){
+func TestGetAPIKey(t *testing.T) {
 	tests := map[string]struct {
-		input		http.Header
-		wantString	string
-		wantError	error
+		input      http.Header
+		wantString string
+		wantError  error
 	}{
-		"standard":		{
-			input: http.Header{"Authorization": []string{"ApiKey key"}}, 
-			wantString: "key", 
-			wantError: nil,
+		"standard": {
+			input:      http.Header{"Authorization": []string{"ApiKey key"}},
+			wantString: "key",
+			wantError:  nil,
 		},
-		"empty header":		{
-			input: http.Header{},
+		"empty header": {
+			input:      http.Header{},
 			wantString: "",
-			wantError: ErrNoAuthHeaderIncluded,
+			wantError:  ErrNoAuthHeaderIncluded,
 		},
-		"malformed label":	{
-			input: http.Header{"Authorization": []string{"apikey key"}},
+		"malformed label": {
+			input:      http.Header{"Authorization": []string{"apikey key"}},
 			wantString: "",
-			wantError: ErrMalformedHeader,
+			wantError:  ErrMalformedHeader,
 		},
-		"label leading space":	{
-			input: http.Header{"Authorization": []string{" ApiKey key"}},
+		"label leading space": {
+			input:      http.Header{"Authorization": []string{" ApiKey key"}},
 			wantString: "",
-			wantError: ErrMalformedHeader,
+			wantError:  ErrMalformedHeader,
 		},
-		"label trailing space":	{
-			input: http.Header{"Authorization": []string{"ApiKey  key"}},
+		"label trailing space": {
+			input:      http.Header{"Authorization": []string{"ApiKey  key"}},
 			wantString: "",
-			wantError: nil,
+			wantError:  nil,
 		},
 	}
 	for name, tc := range tests {
 		t.Run(name, func(t *testing.T) {
 			gotString, gotErr := GetAPIKey(tc.input)
 			if !reflect.DeepEqual(tc.wantString, gotString) || !reflect.DeepEqual(tc.wantError, gotErr) {
-				t.Fatalf("\nexpected\t (%v, %v)\ngot \t\t(%v, %v)\n", 
-				tc.wantString, tc.wantError,
-				gotString, gotErr)
+				t.Fatalf("\nexpected\t (%v, %v)\ngot \t\t(%v, %v)\n",
+					tc.wantString, tc.wantError,
+					gotString, gotErr)
 			}
 		})
 	}
 }
-		
-
