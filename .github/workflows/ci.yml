@@ -18,7 +18,7 @@ jobs:
         with:
           go-version: '1.22'
 
-      - name: Check Running Version
+      - name: Run Test Suite
         run: go test -cover ./...
 
   style:
