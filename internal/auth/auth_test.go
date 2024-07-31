@@ -38,7 +38,7 @@ func TestGetAPIKey(t *testing.T){
 		"label trailing space":	{
 			input: http.Header{"Authorization": []string{"ApiKey  key"}},
 			wantString: "",
-			wantError: errors.new("junk error for fail state"),
+			wantError: errors.New("junk error for fail state"),
 		},
 	}
 	for name, tc := range tests {
