@@ -31,11 +31,13 @@ jobs:
         run: 'gcloud info'
 
       - name: Deploy to gcloud
-        run: >- gcloud builds submit 
+        run: >-
+          gcloud builds submit 
           --tag us-central1-docker.pkg.dev/booming-list-434216-g8/notely-ar-repo/1ff8b8e806d8:latest .
 
       - name: Deploy to Cloud Run
-        run: >- gcloud run deploy notely 
+        run: >-
+          gcloud run deploy notely 
           --image us-central1-docker.pkg.dev/booming-list-434216-g8/notely-ar-repo/1ff8b8e806d8:latest 
           --region us-central1 --allow-unauthenticated --project booming-list-434216-g8 --max-instances=4
 
